@@ -25,7 +25,7 @@ result = m.get_config('running', interface_filter)
 print(result)
 
 # Render our Jinja template
-interface_template = Template(open('interface.xml').read())
+interface_template = Template(open('/usr/git_projects/pynet-script/interface.xml').read())
 interface_rendered = interface_template.render(
   INTERFACE_INDEX='2', 
   IP_ADDRESS='10.0.0.1', 
