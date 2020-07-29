@@ -1,5 +1,10 @@
 # Command to run the program:   python cisco-automation-tutorial.py
 
+# Print Pretty
+
+import xmltodict
+import xml.dom.minidom
+
 # Import the required dependencies
 from ncclient import manager
 from jinja2 import Template
@@ -22,7 +27,7 @@ interface_filter = '''
 
 # Execute the get-config RPC
 result = m.get_config('running', interface_filter)
-print(result)
+print(xml.dom.minidom.parseString(str(result)).toprettyxml())
 
 # Render our Jinja template
 interface_template = Template(open('/usr/git_projects/pynet-script/interface.xml').read())
@@ -33,4 +38,4 @@ interface_rendered = interface_template.render(
 )
 # Execute the edit-config RPC
 result = m.edit_config(target='running', config=interface_rendered)
-print(result)
+print(xml.dom.minidom.parseString(str(result)).toprettyxml())
