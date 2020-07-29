@@ -27,6 +27,7 @@ interface_filter = '''
 
 # Execute the get-config RPC
 result = m.get_config('running', interface_filter)
+# Print Pretty
 print(xml.dom.minidom.parseString(str(result)).toprettyxml())
 
 # Render our Jinja template
@@ -38,4 +39,5 @@ interface_rendered = interface_template.render(
 )
 # Execute the edit-config RPC
 result = m.edit_config(target='running', config=interface_rendered)
+# Print Pretty
 print(xml.dom.minidom.parseString(str(result)).toprettyxml())
